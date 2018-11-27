@@ -14,13 +14,13 @@
  1. Install package
 
     ```sh
-    go get github.com/.../events
+    go get github.com/naviarh/gevents
     ```
 
  2. Import Package
 
     ```go
-    import . "github.com/.../events"
+    import . "https://github.com/naviarh/gevents"
     ```
 
  3. Register events globally
