@@ -20,7 +20,7 @@
  2. Import Package
 
     ```go
-    import . "https://github.com/naviarh/gevents"
+    import . "github.com/naviarh/gevents"
     ```
 
  3. Register events globally
