@@ -1,4 +1,4 @@
-# events
+# Gevents
 
 **An implementation of the event model for Golang.**
 
