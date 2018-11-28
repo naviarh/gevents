@@ -4,7 +4,7 @@ import "sync"
 
 // Структура событий
 type events struct {
-	m sync.Mutex
+	m sync.RWMutex
 	// Карта функций реакций на события
 	el map[int64]map[int64]func([]interface{}) // map[номер реакции][номер события] := функция реакции
 	ll int64 // счётчик номеров реакций
@@ -90,11 +90,13 @@ func (e *events) DelEvent(n int64) bool {
 }
 // Метод события
 func (e events) Event(n int64, args ...interface{}) {
+	e.m.RLock()
 	for m, b := range e.en[n] {
 		if b {
 			go e.el[m][n](args)
 		}
 	}
+	e.m.RUnlock()
 }
 // Создание событийного механизма
 var E = events{ el: make(map[int64]map[int64]func([]interface{})), ll: 0, en: make(map[int64]map[int64]bool), ln: 0 }
