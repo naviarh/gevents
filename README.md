@@ -5,7 +5,7 @@
 ## Why I should use this:
 
  - Very easy to use event model.
- - No dependencies on other packages.
+ - No dependencies on third-party packages..
  - Full control over events and reactions to them.
  - Simple source code that is easy to upgrade.
 
