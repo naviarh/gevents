@@ -7,14 +7,14 @@
  - Very easy to use event model.
  - No dependencies on other packages.
  - Full control over events and reactions to them.
- - Simple source code that is easy to upgrade. 
+ - Simple source code that is easy to upgrade.
 
 ## How to use:
 
- 1. Install package
+ 1. Install package (and update)
 
     ```sh
-    go get github.com/naviarh/gevents
+    go get -u github.com/naviarh/gevents
     ```
 
  2. Import Package
@@ -32,11 +32,17 @@
     )
     ```
 
- 4. Add event-responsive function
+ 4. Add event-responsive function (with processing passed event arguments)
 
     ```go
-    func myFunc() {
-        return true
+    func myFunc(args []interface{}) {
+	    for i := range args {
+	        switch args[i].(type) {
+	            case string: print(args[i].(string))
+	            case int: print(args[i].(int))
+	            default: fmt.Print("%T", args[i])
+	        }
+	    }
     }
     ```
 
@@ -49,10 +55,10 @@
     }
     ```
 
- 6. The event occurs using the function
+ 6. The event occurs using the function (with optional argument passing)
 
     ```go
-    E.Event(event1)
+    E.Event(event1, arg1, arg2, ...)
     ```
 
  7. You can pause the response to an event
@@ -91,6 +97,6 @@
     }
     ```
 
- 
+
  **Event response functions run in goroutines!**
-  
+

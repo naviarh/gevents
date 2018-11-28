@@ -3,19 +3,19 @@ package events
 // Структура событий
 type events struct {
 	// Карта функций слушателей событий
-	el map[int64]map[int64]func() // map[номер реакции][номер события] := функция реакции
+	el map[int64]map[int64]func([]interface{}) // map[номер реакции][номер события] := функция реакции
 	ll int64 // счётчик номеров реакций
 	// Карта карт событий
 	en map[int64]map[int64]bool // map[номер события][номер реакции] := признак выполнения
 	ln int64 // счётчик номеров событй
 }
 // Добавить реакцию на событие
-func (e *events) AddReaction(ev int64, fn func()) (int64, bool) {
+func (e *events) AddReaction(ev int64, fn func([]interface{})) (int64, bool) {
 	e.ll++ // определение номера реакции
 	_, ok := e.en[ev] // проверка существования событя
 	if ok {
 		e.en[ev][e.ll] = true // добавить номер реакции в карту события
-		e.el[e.ll] = make(map[int64]func()) // создать карту реакции
+		e.el[e.ll] = make(map[int64]func([]interface{})) // создать карту реакции
 		e.el[e.ll][ev] = fn // добавить функцию реакции
 	}
 	return e.ll, ok
@@ -71,12 +71,12 @@ func (e *events) DelEvent(n int64) bool {
 	return ok
 }
 // Метод события
-func (e events) Event(n int64) {
+func (e events) Event(n int64, args ...interface{}) {
 	for m, b := range e.en[n] {
 		if b {
-			go e.el[m][n]()
+			go e.el[m][n](args)
 		}
 	}
 }
 // Создание событийного механизма
-var E = events{ el: make(map[int64]map[int64]func()), ll: 0, en: make(map[int64]map[int64]bool), ln: 0 }
+var E = events{ el: make(map[int64]map[int64]func([]interface{})), ll: 0, en: make(map[int64]map[int64]bool), ln: 0 }
