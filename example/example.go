@@ -2,7 +2,7 @@ package main
 
 import (
 	"time"
-	. "github.com/naviarh/gevents"
+	. "../../gevents"
 )
 
 // Перечень событий
