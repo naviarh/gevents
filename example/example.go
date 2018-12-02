@@ -10,7 +10,7 @@ var (
 	event1  = E.AddEvent()
 )
 
-// Функция реагтрования на событие
+// Функция реагирования на событие
 func listen(args []interface{}) {
 	print(len(args), " vars ->")
 	for i := range args {
