@@ -6,8 +6,8 @@ import "sync"
 type events struct {
 	m sync.RWMutex
 	// Карта функций реакций на события
-	el map[int64]map[int64]*func([]interface{}) // map[номер реакции][номер события] := функция реакции
-	ll int64                                    // счётчик номеров реакций
+	el map[int64]map[int64]func([]interface{}) // map[номер реакции][номер события] := функция реакции
+	ll int64                                   // счётчик номеров реакций
 	// Карта карт событий
 	en map[int64]map[int64]bool // map[номер события][номер реакции] := признак выполнения
 	ln int64                    // счётчик номеров событй
@@ -19,9 +19,9 @@ func (e *events) AddReaction(ev int64, fn func([]interface{})) (int64, bool) {
 	e.m.Lock()
 	_, ok := e.en[ev] // проверка существования событя
 	if ok {
-		e.en[ev][e.ll] = true                             // добавить номер реакции в карту события
-		e.el[e.ll] = make(map[int64]*func([]interface{})) // создать карту реакции
-		e.el[e.ll][ev] = &fn                              // добавить функцию реакции
+		e.en[ev][e.ll] = true                            // добавить номер реакции в карту события
+		e.el[e.ll] = make(map[int64]func([]interface{})) // создать карту реакции
+		e.el[e.ll][ev] = fn                              // добавить функцию реакции
 	}
 	e.m.Unlock()
 	return e.ll, ok
@@ -99,13 +99,13 @@ func (e events) Event(n int64, args ...interface{}) {
 	e.m.RLock()
 	for m, b := range e.en[n] {
 		if b {
-			// (*e.el[m][n])(args)
-			// go (*e.el[m][n])(args)
-			go func() { (*e.el[m][n])(args) }()
+			// (e.el[m][n])(args)
+			go (e.el[m][n])(args)
+			// go func() { (e.el[m][n])(args) }()
 		}
 	}
 	e.m.RUnlock()
 }
 
 // Создание событийного механизма
-var E = events{el: make(map[int64]map[int64]*func([]interface{})), ll: 0, en: make(map[int64]map[int64]bool), ln: 0}
+var E = events{el: make(map[int64]map[int64]func([]interface{})), ll: 0, en: make(map[int64]map[int64]bool), ln: 0}
