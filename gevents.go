@@ -1,6 +1,6 @@
 package gevents
 
-type Multi struct {
+type Interface struct {
 	SizeOUT   int
 	SizeIN    int
 	in        chan interface{}
@@ -10,7 +10,7 @@ type Multi struct {
 	reactions int
 }
 
-func (e *Multi) worker() {
+func (e *Interface) worker() {
 	var in interface{}
 	for {
 		in = <-e.in
@@ -20,7 +20,7 @@ func (e *Multi) worker() {
 	}
 }
 
-func (e *Multi) Init(args ...int) {
+func (e *Interface) Init(args ...int) {
 	e.SizeIN = 100
 	if len(args) > 0 {
 		if args[0] > 0 {
@@ -41,7 +41,7 @@ func (e *Multi) Init(args ...int) {
 	go e.worker()
 }
 
-func (e *Multi) Increment(n ...int) bool {
+func (e *Interface) Increment(n ...int) bool {
 	if e.reactions < int(^uint(0)>>1) {
 		if len(n) > 0 {
 			e.reactions += n[0]
@@ -54,7 +54,7 @@ func (e *Multi) Increment(n ...int) bool {
 	return true
 }
 
-func (e *Multi) Decrement(n ...int) bool {
+func (e *Interface) Decrement(n ...int) bool {
 	if e.reactions > 0 {
 		if len(n) > 0 {
 			e.reactions -= n[0]
