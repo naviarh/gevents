@@ -4,7 +4,7 @@
 
 ## Overview
 
-The purpose of this project is to create an event mechanism that allows you to organize the generation of events in different places of your program, and sign up to these events response functions that can receive the necessary information from the event generators. Thus, it is possible to organize the interaction between the different parts of the program, for example, which are isolated in different goroutines.
+The purpose of this project is to create an event mechanism that allow you to organize the generation of events in different places of your program and sign consumers to these events, which can receive the necessary information from event generators. Thus, it is possible to organize the interaction between different parts of the program, for example, which are isolated in different goroutines.
 
 This package has minimal complexity of the source code, and can be easily integrated into any program.
 
