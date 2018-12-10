@@ -19,7 +19,7 @@ This package has minimal complexity of the source code, and can be easily integr
 ## Why I should use this:
 
  - Very easy to use event model.
- - No dependencies on third-party packages..
+ - No dependencies on other packages at all.
  - Full control over events and reactions to them.
  - Simple source code that is easy to upgrade.
 
