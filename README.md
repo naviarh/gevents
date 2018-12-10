@@ -10,9 +10,11 @@ This package has minimal complexity of the source code, and can be easily integr
 
 ## In some cases, there is a need to use Gevents:
 
- - Multiple consumers subscribed to the same event source.
- - The source does not know which consumers are subscribed.
- - Consumers can subscribe and unsubscribe dynamically.
+ **- Multiple consumers subscribed to the same event source.**
+ 
+ **- The source does not know which consumers are subscribed.**
+ 
+ **- Consumers can subscribe and unsubscribe dynamically.**
 
 ## Why I should use this:
 
@@ -73,7 +75,7 @@ This package has minimal complexity of the source code, and can be easily integr
     event1.Decrement()
     ```
 
- 8. The example of reactive code for event
+ 8. The example of reactive code for event (by IN channel)
 
     ```go
     go func() {
@@ -106,8 +108,8 @@ This package has minimal complexity of the source code, and can be easily integr
 
     ```go
     gevent.Multi	interface{}
-	gevent.Bool		bool
-	gevent.Int		int
+	gevent.Bool	bool
+	gevent.Int	int
 	gevent.String	string
     ```
 
