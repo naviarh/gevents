@@ -48,7 +48,7 @@ This package has minimal complexity of the source code, and can be easily integr
     ```go
     func init() {
     	...
-		event1.init()
+		event1.Init()
 		...
 	}
     ```
