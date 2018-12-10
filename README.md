@@ -104,7 +104,7 @@ This package has minimal complexity of the source code, and can be easily integr
 	}()
     ```
 
- 10. The following types of event channels exist
+ 0. The following types of event channels exist
 
     ```go
     gevent.Multi	interface{}
