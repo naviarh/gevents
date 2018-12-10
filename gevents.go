@@ -1,3 +1,16 @@
+/*
+ * Gevents
+ * Version 2
+ * https://github.com/naviarh/gevents
+ *
+ * Event Model for Go
+ *
+ * Copyright (c) 2018 Navi-Arh
+ * Licensed under the MIT license
+ * https://raw.githubusercontent.com/naviarh/gevents/master/LICENSE
+ *
+ */
+
 package gevents
 
 type Interface struct {
