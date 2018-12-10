@@ -40,16 +40,14 @@ This package has minimal complexity of the source code, and can be easily integr
  3. Register events globally
 
     ```go
-    var (
-    	event1 gevent.Multi
-		...
-    )
+    var event1 gevent.Multi
     ```
 
  4. Event channels initialization
 
     ```go
     func init() {
+    		...
 		event1.init()
 		...
 	}
