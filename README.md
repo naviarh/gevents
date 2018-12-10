@@ -8,6 +8,12 @@ The purpose of this project is to create an event mechanism that allows you to o
 
 This package has minimal complexity of the source code, and can be easily integrated into any program.
 
+## In some cases, there is a need to use Gevents:
+
+ - Multiple consumers subscribed to the same event source.
+ - The source does not know which consumers are subscribed.
+ - Consumers can subscribe and unsubscribe dynamically.
+
 ## Why I should use this:
 
  - Very easy to use event model.
@@ -33,77 +39,75 @@ This package has minimal complexity of the source code, and can be easily integr
 
     ```go
     var (
-    	event1 = E.AddEvent()
+    	event1 gevent.Multi
+		//event2 gevent.Bool
+		//event3 gevent.Int
+		//event4 gevent.String
     	...
     )
     ```
 
- 4. Add event-responsive function (with processing passed event arguments)
+ 4. Event channels initialization
 
     ```go
-    func myFunc(args []interface{}) {
-	    for i := range args {
-	        switch args[i].(type) {
-	            case string: print(args[i].(string))
-	            case int: print(args[i].(int))
-	            default: fmt.Print("%T", args[i])
-	        }
-	    }
-    }
+    func init() {
+		event1.init()
+	}
     ```
 
- 5. Add a response to the event, we get the response ID and the result of the successful addition
+ 5. The event occurs when a message is sent to OUT channel
 
     ```go
-    num1, res := E.AddReaction(event1, myFunc)
-    if res {
-        println("Added")
-    }
+    event1.OUT <- "This is the event!"
     ```
 
- 6. The event occurs using the function (with optional argument passing)
+ 6. To add the event listener
 
     ```go
-    E.Event(event1, arg1, arg2, ...)
+    event1.Increment()
     ```
 
- 7. You can pause the response to an event
+ 7. To remove the event listener
 
     ```go
-    res = E.StopReaction(num1)
-    if res {
-        println("Suspended")
-    }
+    event1.Decrement()
     ```
 
- 8. You can resume responding to an event
+ 8. The example of reactive code for event
 
     ```go
-    res = E.StartReaction(num1)
-    if res {
-        println("Resumed")
-    }
+    go func() {
+		event1.Increment()
+		defer event1.Decrement()
+		for {
+			var := <-event1.IN
+			fmt.Println(var)
+		}
+	}()
     ```
 
- 9. You can remove the response to the event
+ 9. One consumer can listen to several events
 
     ```go
-    res = E.DelReaction(num1)
-    if res {
-        println("Removed")
-    }
+    go func() {
+		event1.Increment(2)
+		defer event1.Decrement(2)
+		for {
+			select {
+			case var1 := <-event1.IN:
+				fmt.Println(var1)
+			case var2 := <-event2.IN:
+				fmt.Println(var2)
+		}
+	}()
     ```
 
- 1. You can delete the event itself (with all added responses to it)
+ 10. The following types of event channels exist
 
     ```go
-    res = E.DelEvent(event1)
-    if res {
-        println("Removed")
-    }
+    gevent.Multi	interface{}
+	gevent.Bool		bool
+	gevent.Int		int
+	gevent.String	string
     ```
-
-
- **Event response functions run in goroutines!**
-
 
