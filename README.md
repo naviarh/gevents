@@ -115,8 +115,8 @@ This package has minimal complexity of the source code, and can be easily integr
 
     ```go
     event1.Init(size_OUT, size_IN)
-    // size_OUT - the size of the buffer of OUT channel (int)
-    // size_IN - the size of the buffer of IN channel (int)
+    // size_OUT - the size of the buffer of OUT channel, default is 100 (int)
+    // size_IN - the size of the buffer of IN channel, default is 0 (int)
     ```
 
  2. You can add or remove multiple event listeners
