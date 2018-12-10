@@ -105,10 +105,10 @@ This package has minimal complexity of the source code, and can be easily integr
  0. The following types of events channels exist
 
     ```go
-    gevent.String	interface{}
-	gevent.Bool	bool
-	gevent.Int	int
-	gevent.String	string
+    gevent.Interface	interface{}
+	gevent.Bool		bool
+	gevent.Int		int
+	gevent.String		string
     ```
 
  1. During initialization, you can specify parameters
