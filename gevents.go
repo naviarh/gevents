@@ -41,7 +41,7 @@ func (e *Interface) Init(args ...int) {
 	go e.worker()
 }
 
-func (e *Interface) Increment(n ...int) bool {
+func (e *Interface) Add(n ...int) bool {
 	if e.reactions < int(^uint(0)>>1) {
 		if len(n) > 0 {
 			e.reactions += n[0]
@@ -54,7 +54,7 @@ func (e *Interface) Increment(n ...int) bool {
 	return true
 }
 
-func (e *Interface) Decrement(n ...int) bool {
+func (e *Interface) Del(n ...int) bool {
 	if e.reactions > 0 {
 		if len(n) > 0 {
 			e.reactions -= n[0]
@@ -108,7 +108,7 @@ func (e *Bool) Init(args ...int) {
 	go e.worker()
 }
 
-func (e *Bool) Increment(n ...int) bool {
+func (e *Bool) Add(n ...int) bool {
 	if e.reactions < int(^uint(0)>>1) {
 		if len(n) > 0 {
 			e.reactions += n[0]
@@ -121,7 +121,7 @@ func (e *Bool) Increment(n ...int) bool {
 	return true
 }
 
-func (e *Bool) Decrement(n ...int) bool {
+func (e *Bool) Del(n ...int) bool {
 	if e.reactions > 0 {
 		if len(n) > 0 {
 			e.reactions -= n[0]
@@ -175,7 +175,7 @@ func (e *Int) Init(args ...int) {
 	go e.worker()
 }
 
-func (e *Int) Increment(n ...int) bool {
+func (e *Int) Add(n ...int) bool {
 	if e.reactions < int(^uint(0)>>1) {
 		if len(n) > 0 {
 			e.reactions += n[0]
@@ -188,7 +188,7 @@ func (e *Int) Increment(n ...int) bool {
 	return true
 }
 
-func (e *Int) Decrement(n ...int) bool {
+func (e *Int) Del(n ...int) bool {
 	if e.reactions > 0 {
 		if len(n) > 0 {
 			e.reactions -= n[0]
@@ -242,7 +242,7 @@ func (e *String) Init(args ...int) {
 	go e.worker()
 }
 
-func (e *String) Increment(n ...int) bool {
+func (e *String) Add(n ...int) bool {
 	if e.reactions < int(^uint(0)>>1) {
 		if len(n) > 0 {
 			e.reactions += n[0]
@@ -255,7 +255,7 @@ func (e *String) Increment(n ...int) bool {
 	return true
 }
 
-func (e *String) Decrement(n ...int) bool {
+func (e *String) Del(n ...int) bool {
 	if e.reactions > 0 {
 		if len(n) > 0 {
 			e.reactions -= n[0]
