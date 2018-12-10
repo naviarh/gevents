@@ -40,7 +40,7 @@ This package has minimal complexity of the source code, and can be easily integr
  3. Register the event globally
 
     ```go
-    var event1 gevent.Multi
+    var event1 gevent.String
     ```
 
  4. Event channels initialization
@@ -103,7 +103,7 @@ This package has minimal complexity of the source code, and can be easily integr
  0. The following types of events channels exist
 
     ```go
-    gevent.Multi	interface{}
+    gevent.String	interface{}
 	gevent.Bool	bool
 	gevent.Int	int
 	gevent.String	string
