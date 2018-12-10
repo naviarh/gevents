@@ -1,17 +1,15 @@
 package gevents
 
-// Структура Multi
 type Multi struct {
-	SizeOUT   int                // размер буферов канала событий
-	SizeIN    int                // размер буферов канала рассылок
-	in        chan interface{}   // ресивер воркера (канал событий)
-	out       chan interface{}   // сендлер воркера (канал рассылок)
-	OUT       chan<- interface{} // воркер пользователя (канал событий)
-	IN        <-chan interface{} // ресивер пользователя (канал рассылок)
-	reactions int                // количество рассылок событий
+	SizeOUT   int
+	SizeIN    int
+	in        chan interface{}
+	out       chan interface{}
+	OUT       chan<- interface{}
+	IN        <-chan interface{}
+	reactions int
 }
 
-// Воркер событий Multi
 func (e *Multi) worker() {
 	var in interface{}
 	for {
@@ -22,15 +20,14 @@ func (e *Multi) worker() {
 	}
 }
 
-// Инициализация событийности Multi
 func (e *Multi) Init(args ...int) {
-	e.SizeIN = 100 // дефолтный размер буфера канала рассылок
+	e.SizeIN = 100
 	if len(args) > 0 {
 		if args[0] > 0 {
 			e.SizeIN = args[0]
 		}
 	}
-	e.SizeOUT = 0 // дефолтный размер буфера канала событий
+	e.SizeOUT = 0
 	if len(args) > 1 {
 		if args[1] > 0 {
 			e.SizeIN = args[1]
@@ -44,7 +41,6 @@ func (e *Multi) Init(args ...int) {
 	go e.worker()
 }
 
-// Инкрементор рассылок события
 func (e *Multi) Increment(n ...int) bool {
 	if e.reactions < int(^uint(0)>>1) {
 		if len(n) > 0 {
@@ -58,7 +54,6 @@ func (e *Multi) Increment(n ...int) bool {
 	return true
 }
 
-// Декрементор рассылок события
 func (e *Multi) Decrement(n ...int) bool {
 	if e.reactions > 0 {
 		if len(n) > 0 {
@@ -72,18 +67,16 @@ func (e *Multi) Decrement(n ...int) bool {
 	return true
 }
 
-// Структура Bool
 type Bool struct {
-	SizeOUT   int         // размер буферов канала событий
-	SizeIN    int         // размер буферов канала рассылок
-	in        chan bool   // ресивер воркера (канал событий)
-	out       chan bool   // сендлер воркера (канал рассылок)
-	OUT       chan<- bool // воркер пользователя (канал событий)
-	IN        <-chan bool // ресивер пользователя (канал рассылок)
-	reactions int         // количество рассылок событий
+	SizeOUT   int
+	SizeIN    int
+	in        chan bool
+	out       chan bool
+	OUT       chan<- bool
+	IN        <-chan bool
+	reactions int
 }
 
-// Воркер событий int
 func (e *Bool) worker() {
 	var in bool
 	for {
@@ -94,15 +87,14 @@ func (e *Bool) worker() {
 	}
 }
 
-// Инициализация событийности int
 func (e *Bool) Init(args ...int) {
-	e.SizeIN = 100 // дефолтный размер буфера канала рассылок
+	e.SizeIN = 100
 	if len(args) > 0 {
 		if args[0] > 0 {
 			e.SizeIN = args[0]
 		}
 	}
-	e.SizeOUT = 0 // дефолтный размер буфера канала событий
+	e.SizeOUT = 0
 	if len(args) > 1 {
 		if args[1] > 0 {
 			e.SizeIN = args[1]
@@ -116,7 +108,6 @@ func (e *Bool) Init(args ...int) {
 	go e.worker()
 }
 
-// Инкрементор рассылок события
 func (e *Bool) Increment(n ...int) bool {
 	if e.reactions < int(^uint(0)>>1) {
 		if len(n) > 0 {
@@ -130,7 +121,6 @@ func (e *Bool) Increment(n ...int) bool {
 	return true
 }
 
-// Декрементор рассылок события
 func (e *Bool) Decrement(n ...int) bool {
 	if e.reactions > 0 {
 		if len(n) > 0 {
@@ -144,18 +134,16 @@ func (e *Bool) Decrement(n ...int) bool {
 	return true
 }
 
-// Структура Int
 type Int struct {
-	SizeOUT   int        // размер буферов канала событий
-	SizeIN    int        // размер буферов канала рассылок
-	in        chan int   // ресивер воркера (канал событий)
-	out       chan int   // сендлер воркера (канал рассылок)
-	OUT       chan<- int // воркер пользователя (канал событий)
-	IN        <-chan int // ресивер пользователя (канал рассылок)
-	reactions int        // количество рассылок событий
+	SizeOUT   int
+	SizeIN    int
+	in        chan int
+	out       chan int
+	OUT       chan<- int
+	IN        <-chan int
+	reactions int
 }
 
-// Воркер событий int
 func (e *Int) worker() {
 	var in int
 	for {
@@ -166,15 +154,14 @@ func (e *Int) worker() {
 	}
 }
 
-// Инициализация событийности int
 func (e *Int) Init(args ...int) {
-	e.SizeIN = 100 // дефолтный размер буфера канала рассылок
+	e.SizeIN = 100
 	if len(args) > 0 {
 		if args[0] > 0 {
 			e.SizeIN = args[0]
 		}
 	}
-	e.SizeOUT = 0 // дефолтный размер буфера канала событий
+	e.SizeOUT = 0
 	if len(args) > 1 {
 		if args[1] > 0 {
 			e.SizeIN = args[1]
@@ -188,7 +175,6 @@ func (e *Int) Init(args ...int) {
 	go e.worker()
 }
 
-// Инкрементор рассылок события
 func (e *Int) Increment(n ...int) bool {
 	if e.reactions < int(^uint(0)>>1) {
 		if len(n) > 0 {
@@ -202,7 +188,6 @@ func (e *Int) Increment(n ...int) bool {
 	return true
 }
 
-// Декрементор рассылок события
 func (e *Int) Decrement(n ...int) bool {
 	if e.reactions > 0 {
 		if len(n) > 0 {
@@ -216,18 +201,16 @@ func (e *Int) Decrement(n ...int) bool {
 	return true
 }
 
-// Структура String
 type String struct {
-	SizeOUT   int           // размер буферов канала событий
-	SizeIN    int           // размер буферов канала рассылок
-	in        chan string   // ресивер воркера (канал событий)
-	out       chan string   // сендлер воркера (канал рассылок)
-	OUT       chan<- string // воркер пользователя (канал событий)
-	IN        <-chan string // ресивер пользователя (канал рассылок)
-	reactions int           // количество рассылок событий
+	SizeOUT   int
+	SizeIN    int
+	in        chan string
+	out       chan string
+	OUT       chan<- string
+	IN        <-chan string
+	reactions int
 }
 
-// Воркер событий String
 func (e *String) worker() {
 	var in string
 	for {
@@ -238,15 +221,14 @@ func (e *String) worker() {
 	}
 }
 
-// Инициализация событийности String
 func (e *String) Init(args ...int) {
-	e.SizeIN = 100 // дефолтный размер буфера канала рассылок
+	e.SizeIN = 100
 	if len(args) > 0 {
 		if args[0] > 0 {
 			e.SizeIN = args[0]
 		}
 	}
-	e.SizeOUT = 0 // дефолтный размер буфера канала событий
+	e.SizeOUT = 0
 	if len(args) > 1 {
 		if args[1] > 0 {
 			e.SizeIN = args[1]
@@ -260,7 +242,6 @@ func (e *String) Init(args ...int) {
 	go e.worker()
 }
 
-// Инкрементор рассылок события
 func (e *String) Increment(n ...int) bool {
 	if e.reactions < int(^uint(0)>>1) {
 		if len(n) > 0 {
@@ -274,7 +255,6 @@ func (e *String) Increment(n ...int) bool {
 	return true
 }
 
-// Декрементор рассылок события
 func (e *String) Decrement(n ...int) bool {
 	if e.reactions > 0 {
 		if len(n) > 0 {
