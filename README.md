@@ -62,21 +62,21 @@ This package has minimal complexity of the source code, and can be easily integr
  6. To add the event listener
 
     ```go
-    event1.Increment()
+    event1.Add()
     ```
 
  7. To remove the event listener
 
     ```go
-    event1.Decrement()
+    event1.Del()
     ```
 
  8. The example of reactive code for event (by IN channel)
 
     ```go
     go func() {
-		event1.Increment()
-		defer event1.Decrement()
+		event1.Add()
+		defer event1.Del()
 		for {
 			var := <-event1.IN
 			fmt.Println(var)
@@ -88,8 +88,10 @@ This package has minimal complexity of the source code, and can be easily integr
 
     ```go
     go func() {
-		event1.Increment(2)
-		defer event1.Decrement(2)
+		event1.Add()
+		event2.Add()
+		defer event1.Del()
+		defer event2.Del()
 		for {
 			select {
 			case var1 := <-event1.IN:
@@ -107,5 +109,21 @@ This package has minimal complexity of the source code, and can be easily integr
 	gevent.Bool	bool
 	gevent.Int	int
 	gevent.String	string
+    ```
+
+ 1. During initialization, you can specify parameters
+
+    ```go
+    event1.Init(size_OUT, size_IN)
+    // size_OUT - the size of the buffer of OUT channel (int)
+    // size_IN - the size of the buffer of IN channel (int)
+    ```
+
+ 2. You can add or remove multiple event listeners
+
+    ```go
+    event1.Add(N)
+    event1.Del(N)
+    // N - number (int)
     ```
 
