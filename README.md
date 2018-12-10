@@ -34,7 +34,7 @@ This package has minimal complexity of the source code, and can be easily integr
  2. Import Package
 
     ```go
-    import . "github.com/naviarh/gevents"
+    import "github.com/naviarh/gevents"
     ```
 
  3. Register events globally
