@@ -2,7 +2,6 @@ package main
 
 import (
 	"time"
-
 	. "../alternative"
 	// . "github.com/naviarh/gevents/alternative"
 )
