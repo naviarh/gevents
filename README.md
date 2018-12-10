@@ -42,10 +42,7 @@ This package has minimal complexity of the source code, and can be easily integr
     ```go
     var (
     	event1 gevent.Multi
-		//event2 gevent.Bool
-		//event3 gevent.Int
-		//event4 gevent.String
-    	...
+		...
     )
     ```
 
@@ -54,6 +51,7 @@ This package has minimal complexity of the source code, and can be easily integr
     ```go
     func init() {
 		event1.init()
+		...
 	}
     ```
 
