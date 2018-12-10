@@ -37,7 +37,7 @@ This package has minimal complexity of the source code, and can be easily integr
     import "github.com/naviarh/gevents"
     ```
 
- 3. Register events globally
+ 3. Register the event globally
 
     ```go
     var event1 gevent.Multi
@@ -100,7 +100,7 @@ This package has minimal complexity of the source code, and can be easily integr
 	}()
     ```
 
- 0. The following types of event channels exist
+ 0. The following types of events channels exist
 
     ```go
     gevent.Multi	interface{}
