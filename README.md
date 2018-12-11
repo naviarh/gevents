@@ -4,17 +4,18 @@
 
 ## Overview
 
-The purpose of this project is to create an event mechanism that allow you to organize the generation of events in different places of your program and sign consumers to these events, which can receive the necessary information from event generators. Thus, it is possible to organize the interaction between different parts of the program, for example, which are isolated in different goroutines.
+A purpose of this project is to create an event mechanism that allos to organize generation of events in different places of your program and to subscribe listeners to these events. The subscribers can receive necessary information from event generators.
+This helps to organize an interaction between different parts of the program, for example, that are isolated in different goroutines/
 
 This package has minimal complexity of the source code, and can be easily integrated into any program.
 
 ## In some cases, there is a need to use Gevents:
 
- **- Multiple consumers subscribed to the same event source.**
+ **- Multiple listeners subscribed to the same event source.**
  
- **- The source does not know which consumers are subscribed.**
+ **- The source does not know which listeners are subscribed.**
  
- **- Consumers can subscribe and unsubscribe dynamically.**
+ **- Listeners can subscribe and unsubscribe dynamically.**
 
 ## Why I should use this:
 
@@ -84,7 +85,7 @@ This package has minimal complexity of the source code, and can be easily integr
 	}()
     ```
 
- 9. One consumer can listen to several events
+ 9. One listener can subscribe to several events
 
     ```go
     go func() {
@@ -119,7 +120,7 @@ This package has minimal complexity of the source code, and can be easily integr
     // size_IN - the size of the buffer of IN channel, default is 0 (int)
     ```
 
- 2. You can add or remove multiple event listeners
+ 2. You can add or remove several event listeners
 
     ```go
     event1.Add(N)
