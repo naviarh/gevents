@@ -5,7 +5,7 @@
 ## Overview
 
 A purpose of this project is to create an event mechanism that allos to organize generation of events in different places of your program and to subscribe listeners to these events. The subscribers can receive necessary information from event generators.
-This helps to organize an interaction between different parts of the program, for example, that are isolated in different goroutines/
+This helps to organize an interaction between different parts of the program, for example, that are isolated in different goroutines.
 
 This package has minimal complexity of the source code, and can be easily integrated into any program.
 
